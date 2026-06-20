@@ -1,0 +1,65 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Martian
+providerId: martian-ai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Model Router
+- Gateway
+- Cost Optimization
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Martian Gateway is a routing layer in front of many upstream provider
+  models, so effective throughput is governed both by Martian account limits
+  and by the rate limits of whichever provider model the router selects.
+  Martian documents a free request allotment and returns standard HTTP 429
+  responses when limits are exceeded, but specific per-account RPM/TPM
+  values are not publicly enumerated and are not reconciled here.
+notes: >-
+  Confirm per-account and per-tier request/token limits with Martian during
+  reconciliation. Because Martian routes across providers, downstream
+  provider rate limits may also apply to a given request.
+sources:
+- https://docs.withmartian.com/api-reference/endpoints
+- https://docs.withmartian.com/api-reference/errors
+- https://www.withmartian.com
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account request rate; not publicly enumerated.
+- name: Tokens Per Minute (TPM)
+  scope: account
+  metric: tokens
+  limit: see provider documentation
+  notes: Per-account token throughput; not publicly enumerated.
+- name: Free Request Allotment
+  scope: account
+  metric: requests
+  limit: 2500
+  notes: Documented free developer allotment before metered paid usage applies.
+- name: Downstream Provider Limits
+  scope: model
+  metric: requests
+  limit: varies by routed provider
+  notes: The selected upstream model's own provider rate limits may constrain a routed request.
+policies:
+- name: Tiered Limits
+  description: Limits raise from the free developer tier to paid and Enterprise agreements.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Automatic Failover
+  description: Martian can fail over across providers, which can mitigate single-provider throttling for a routed request.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

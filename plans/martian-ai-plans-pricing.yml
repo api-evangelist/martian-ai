@@ -1,0 +1,99 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Martian
+providerId: martian-ai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- LLM
+- Model Router
+- Gateway
+- Cost Optimization
+- Plans
+description: >-
+  Martian offers a free developer tier that includes a fixed allotment of
+  free requests plus API access, with paid usage metered beyond that.
+  Because Martian is a model router, the marginal cost of a routed request
+  is primarily the pass-through cost of the underlying provider model it
+  selects; Martian publishes a free starting allotment and describes paid
+  usage as metered, and offers custom enterprise routers with SLA and VPC
+  options. Specific per-token gateway markups and paid-tier unit rates are
+  not publicly enumerated and are not reconciled in this artifact.
+notes: >-
+  The free developer allotment is documented as 2,500 free requests; the
+  exact metered paid rate and any per-request or per-token gateway fee on
+  top of underlying model cost are not published and must be confirmed with
+  Martian during reconciliation.
+sources:
+- https://www.withmartian.com
+- https://docs.withmartian.com/quickstart
+plans:
+- id: martian-free
+  name: Free Developer
+  type: free
+  description: >-
+    Free starting tier with API access and a fixed allotment of free
+    routed requests to evaluate the Martian Gateway.
+  entries:
+  - label: Free Requests
+    name: free_requests
+    type: free
+    metric: requests
+    limit: 2500
+    timeFrame: lifetime
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Chat Completions (routed)
+  - name: Messages (routed)
+  - name: Models
+- id: martian-usage
+  name: Pay-as-you-go
+  type: usage
+  description: >-
+    Metered usage beyond the free allotment. Routed requests pass through to
+    the underlying provider model the router selects; exact gateway unit
+    rates are not publicly enumerated.
+  entries:
+  - label: Routed Requests / Tokens
+    name: routed_usage
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: metered, see provider (not publicly enumerated)
+    userMultiplied: false
+  elements:
+  - name: Chat Completions (routed)
+  - name: Messages (routed)
+- id: martian-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom routers with SLA, VPC / private deployment options, volume
+    commitments, and negotiated terms. Contact Martian sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Routers
+  - name: SLA
+  - name: VPC / Private Deployment
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

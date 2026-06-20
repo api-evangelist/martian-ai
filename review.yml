@@ -1,0 +1,84 @@
+aid: martian-ai
+name: Martian
+review:
+  question: Does Martian expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: true
+  asyncapiScopeNote: |
+    Per API Evangelist scope, HTTP Server-Sent Events (SSE) is in-scope for
+    AsyncAPI modeling. An AsyncAPI 2.6 document was created at
+    asyncapi/martian-ai-asyncapi.yml describing the chat completion SSE stream
+    (POST /v1/chat/completions with stream=true). No WebSocket surface was
+    modeled because none is documented.
+companyStatus:
+  summary: |
+    Martian (withmartian.com) is an active, independently funded company, not
+    acquired and not pivoted as of the review date. It invented and operates
+    an LLM model router / gateway that dynamically routes each request to the
+    best underlying model across providers for the optimal balance of quality,
+    latency, and cost. Martian raised a $9M round led by NEA (Sept 2024) with
+    participation from Prosus Ventures, Carya Venture Partners, General
+    Catalyst, and Accenture Ventures, and was reported (April 2026) to be
+    nearing a $1.3B valuation. The product remains a live, OpenAI-compatible
+    model router, so this catalog documents a real, currently-available API.
+  active: true
+  pivoted: false
+  acquired: false
+findings:
+  summary: |
+    Martian does not publish a documented public WebSocket API. The Martian
+    Gateway is OpenAI-compatible (and additionally Anthropic Messages-
+    compatible) and exposes only REST (HTTPS) endpoints under
+    https://api.withmartian.com/v1. Streaming for chat completions is delivered
+    as HTTP Server-Sent Events (SSE) via the stream=true parameter on the REST
+    endpoint; SSE is a one-way HTTP streaming transport and is not WebSocket.
+    No realtime, bidirectional, or audio-streaming WebSocket (ws:// or wss://)
+    endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.withmartian.com/v1
+      documented: true
+    - protocol: SSE
+      scheme: https
+      note: Server-Sent Events delivered over the same REST chat completions endpoint when stream=true. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Martian's API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST https://api.withmartian.com/v1/chat/completions
+    - POST https://api.withmartian.com/v1/messages
+    - GET  https://api.withmartian.com/v1/models
+  routingNotes: |
+    Martian is a model router. The model parameter must be a provider/model-name
+    string (for example, openai/gpt-4.1-nano); the provider prefix is required.
+    Routing controls such as willingness-to-pay (trading quality against cost)
+    and automatic cross-provider failover are described in Martian product and
+    documentation pages but are not enumerated as a separate REST resource, so
+    no dedicated router-config endpoint is documented beyond per-request
+    parameters and the /v1/models catalog.
+sources:
+  - url: https://docs.withmartian.com/api-reference/endpoints
+    type: APIReference
+    note: Lists POST /v1/chat/completions, POST /v1/messages, and GET /v1/models; Bearer auth; base host api.withmartian.com.
+  - url: https://docs.withmartian.com/quickstart
+    type: Documentation
+    note: Base URL https://api.withmartian.com/v1; Authorization Bearer $MARTIAN_API_KEY; provider/model-name model format.
+  - url: https://www.withmartian.com
+    type: Website
+    note: Describes the model router / gateway, willingness-to-pay cost controls, failover, and free starting allotment.
+  - url: https://newsroom.accenture.com/news/2024/accenture-invests-in-martian-to-bring-dynamic-routing-of-large-language-queries-and-more-effective-ai-systems-to-clients
+    type: News
+    note: Accenture Ventures investment; confirms active company and dynamic LLM routing product.
+actions:
+  asyncapiPath: asyncapi/martian-ai-asyncapi.yml
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Under the scope that allows SSE in
+    AsyncAPI, an AsyncAPI 2.6 document was authored for the chat completion SSE
+    stream, with HTTP+SSE transport documented explicitly throughout the spec
+    so SSE is never misrepresented as WebSocket.

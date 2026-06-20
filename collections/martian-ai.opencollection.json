@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Martian Gateway API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Chat Completions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a routed chat completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.withmartian.com/v1/chat/completions",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model\": \"openai/gpt-4.1-nano\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello from Martian\"\n    }\n  ],\n  \"max_tokens\": 256,\n  \"stream\": false\n}"
+            }
+          },
+          "docs": "OpenAI-compatible chat completion routed dynamically across providers. Model uses provider/model-name format. Set stream=true for Server-Sent Events."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a routed message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.withmartian.com/v1/messages",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"model\": \"anthropic/claude-sonnet-4\",\n  \"max_tokens\": 256,\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello from Martian\"\n    }\n  ]\n}"
+            }
+          },
+          "docs": "Anthropic Messages-compatible request routed through the Martian Gateway."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.withmartian.com/v1/models"
+          },
+          "docs": "Returns all models currently supported by the Gateway as provider/model-name identifiers."
+        }
+      ]
+    }
+  ]
+}

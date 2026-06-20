@@ -1,0 +1,104 @@
+asyncapi: '2.6.0'
+id: 'urn:com:withmartian:gateway:v1:chat-completions:sse'
+info:
+  title: Martian Gateway Chat Completions Streaming (HTTP + SSE)
+  version: '1.0.0'
+  description: |
+    AsyncAPI 2.6 description of the Martian Gateway's **chat completion
+    streaming** surface.
+
+    Martian does not publish a WebSocket API. The Martian Gateway is an
+    OpenAI-compatible model router; its only asynchronous / event-style
+    transport is **HTTP Server-Sent Events (SSE)** delivered over the same
+    REST endpoint (`POST /v1/chat/completions`) when the request body sets
+    `stream: true`. SSE is a one-way, server-to-client HTTP streaming
+    channel; it is **not** WebSocket.
+
+    Because Martian mirrors the OpenAI Chat Completions streaming contract,
+    tokens are sent as data-only server-sent events as they become available,
+    with the stream terminated by a `data: [DONE]` message.
+
+    This AsyncAPI document models only the streamed events emitted by the
+    Gateway's SSE response. The request body itself (model in
+    provider/model-name format, messages, etc.) is modeled in the companion
+    OpenAPI document at `openapi/martian-ai-openapi.yml`.
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+    url: https://apievangelist.com
+  license:
+    name: API documentation - Martian Terms of Service
+    url: https://www.withmartian.com
+  x-transport-notes:
+    transport: HTTP Server-Sent Events (SSE)
+    protocol: https
+    direction: server-to-client (one-way)
+    mediaType: text/event-stream
+    triggeredBy: 'POST https://api.withmartian.com/v1/chat/completions with request body { "stream": true }'
+servers:
+  production:
+    url: api.withmartian.com
+    protocol: https
+    description: >-
+      Martian Gateway. The streaming response is delivered as HTTP
+      Server-Sent Events over this host when stream=true. This is not a
+      WebSocket server.
+channels:
+  /v1/chat/completions:
+    description: >-
+      SSE stream of chat completion chunks returned by POST /v1/chat/completions
+      when the request body sets stream=true.
+    bindings:
+      http:
+        type: request
+        method: POST
+    subscribe:
+      operationId: receiveChatCompletionChunks
+      summary: Receive streamed chat completion chunks as Server-Sent Events.
+      bindings:
+        http:
+          type: response
+      message:
+        $ref: '#/components/messages/ChatCompletionChunk'
+components:
+  messages:
+    ChatCompletionChunk:
+      name: ChatCompletionChunk
+      title: Chat Completion Chunk (SSE data event)
+      contentType: text/event-stream
+      summary: >-
+        A single data-only Server-Sent Event carrying an incremental chat
+        completion delta. The terminal event is the literal string [DONE].
+      payload:
+        $ref: '#/components/schemas/ChatCompletionChunk'
+  schemas:
+    ChatCompletionChunk:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          example: chat.completion.chunk
+        created:
+          type: integer
+        model:
+          type: string
+          description: The provider/model-name the router selected to serve the request.
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              delta:
+                type: object
+                properties:
+                  role:
+                    type: string
+                  content:
+                    type: string
+              finish_reason:
+                type: string
+                nullable: true

@@ -1,0 +1,127 @@
+{
+  "info": {
+    "_postman_id": "b7f4a1d2-9c3e-4a8b-8f21-0a1b2c3d4e5f",
+    "name": "Martian Gateway API",
+    "description": "OpenAI-compatible LLM model router. Chat completions, Anthropic-compatible messages, and model catalog routed dynamically across providers. Base URL https://api.withmartian.com/v1. Authenticate with a Bearer Martian API key. Models use provider/model-name format.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.withmartian.com/v1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Chat Completions",
+      "description": "OpenAI-compatible chat completions, routed dynamically across providers.",
+      "item": [
+        {
+          "name": "Create a routed chat completion",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chat/completions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chat",
+                "completions"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"openai/gpt-4.1-nano\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello from Martian\"\n    }\n  ],\n  \"max_tokens\": 256,\n  \"stream\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Create a chat completion. The model is a provider/model-name string. Set stream=true to receive Server-Sent Events."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "description": "Anthropic Messages-compatible endpoint routed through the Martian Gateway.",
+      "item": [
+        {
+          "name": "Create a routed message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/messages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "messages"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"anthropic/claude-sonnet-4\",\n  \"max_tokens\": 256,\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello from Martian\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Create a message using the Anthropic Messages request shape, routed through Martian."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Models",
+      "description": "List models supported by the Martian Gateway.",
+      "item": [
+        {
+          "name": "List supported models",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/models",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "models"
+              ]
+            },
+            "description": "Returns all models currently supported by the Gateway as provider/model-name identifiers."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+openapi: 3.0.1
+info:
+  title: Martian Gateway API
+  description: >-
+    OpenAPI specification for the Martian Gateway, an LLM model router. The
+    Gateway exposes an OpenAI-compatible chat completions endpoint, an Anthropic
+    Messages-compatible endpoint, and a models listing endpoint. Requests are
+    routed dynamically across a catalog of provider models. Models are addressed
+    with a provider/model-name string (for example, openai/gpt-4.1-nano).
+  termsOfService: https://www.withmartian.com
+  contact:
+    name: Martian
+    url: https://www.withmartian.com
+  version: '1.0'
+servers:
+  - url: https://api.withmartian.com
+    description: Martian Gateway production server
+paths:
+  /v1/chat/completions:
+    post:
+      operationId: createChatCompletion
+      tags:
+        - Chat Completions
+      summary: Create a routed chat completion
+      description: >-
+        OpenAI-compatible chat completions endpoint. Supports most parameters of
+        the OpenAI Chat Completions API. The model is specified as a
+        provider/model-name string, and Martian routes the request to the best
+        underlying model.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatCompletionRequest'
+      responses:
+        '200':
+          description: A chat completion response, or a stream of Server-Sent Events when stream is true.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatCompletionResponse'
+            text/event-stream:
+              schema:
+                type: string
+                description: Server-Sent Events stream of partial chat completion chunks when stream is true.
+        '401':
+          description: Authentication failed (missing or invalid API key).
+        '429':
+          description: Rate limit or quota exceeded.
+  /v1/messages:
+    post:
+      operationId: createMessage
+      tags:
+        - Messages
+      summary: Create a routed message (Anthropic-compatible)
+      description: >-
+        Anthropic Messages-compatible endpoint. Supports most parameters of the
+        Anthropic Messages API and routes the request through the Martian
+        Gateway. The model is specified as a provider/model-name string.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessagesRequest'
+      responses:
+        '200':
+          description: An Anthropic-compatible message response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagesResponse'
+        '401':
+          description: Authentication failed (missing or invalid API key).
+        '429':
+          description: Rate limit or quota exceeded.
+  /v1/models:
+    get:
+      operationId: listModels
+      tags:
+        - Models
+      summary: List supported models
+      description: >-
+        Returns a JSON object containing all models currently supported by the
+        Martian Gateway. The returned identifiers are provider/model-name
+        strings usable as routing targets.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of models supported by the Gateway.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelList'
+        '401':
+          description: Authentication failed (missing or invalid API key).
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Provide your Martian API key as a Bearer token in the Authorization header.
+  schemas:
+    ChatMessage:
+      type: object
+      required:
+        - role
+        - content
+      properties:
+        role:
+          type: string
+          enum:
+            - system
+            - user
+            - assistant
+            - tool
+          description: The role of the author of this message.
+        content:
+          type: string
+          description: The contents of the message.
+        name:
+          type: string
+          description: An optional name for the participant.
+    ChatCompletionRequest:
+      type: object
+      required:
+        - model
+        - messages
+      properties:
+        model:
+          type: string
+          description: Routing target in provider/model-name format (for example, openai/gpt-4.1-nano).
+          example: openai/gpt-4.1-nano
+        messages:
+          type: array
+          description: A list of messages comprising the conversation so far.
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+        max_tokens:
+          type: integer
+          description: The maximum number of tokens to generate in the completion.
+        temperature:
+          type: number
+          description: Sampling temperature.
+        top_p:
+          type: number
+          description: Nucleus sampling probability mass.
+        stream:
+          type: boolean
+          description: If true, partial deltas are sent as Server-Sent Events.
+          default: false
+        stop:
+          type: array
+          items:
+            type: string
+          description: Up to a few sequences where the API will stop generating further tokens.
+    ChatCompletionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          example: chat.completion
+        created:
+          type: integer
+        model:
+          type: string
+          description: The provider/model-name that the router selected to serve the request.
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              message:
+                $ref: '#/components/schemas/ChatMessage'
+              finish_reason:
+                type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    MessagesRequest:
+      type: object
+      required:
+        - model
+        - messages
+        - max_tokens
+      properties:
+        model:
+          type: string
+          description: Routing target in provider/model-name format.
+          example: anthropic/claude-sonnet-4
+        messages:
+          type: array
+          description: Anthropic-style input messages.
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+        max_tokens:
+          type: integer
+          description: The maximum number of tokens to generate.
+        system:
+          type: string
+          description: An optional system prompt.
+        temperature:
+          type: number
+          description: Sampling temperature.
+        stream:
+          type: boolean
+          default: false
+    MessagesResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: message
+        role:
+          type: string
+          example: assistant
+        model:
+          type: string
+          description: The provider/model-name that the router selected.
+        content:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              text:
+                type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    ModelList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Model'
+    Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The provider/model-name identifier for the model.
+          example: openai/gpt-4.1-nano
+        object:
+          type: string
+          example: model
+        owned_by:
+          type: string
+          description: The upstream provider that owns the model.
+    Usage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
