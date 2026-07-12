@@ -81,6 +81,10 @@ apis:
     returning the provider/model-name identifiers usable as routing targets in
     chat completions and messages requests.
 common:
+- type: DomainSecurity
+  url: security/martian-ai-domain-security.yml
+- type: Authentication
+  url: authentication/martian-ai-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/withmartian
 - type: LinkedIn
@@ -95,6 +99,8 @@ common:
   url: rate-limits/martian-ai-rate-limits.yml
 - type: FinOps
   url: finops/martian-ai-finops.yml
+- type: Blog
+  url: https://www.withmartian.com/blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
