@@ -81,6 +81,8 @@ apis:
     returning the provider/model-name identifiers usable as routing targets in
     chat completions and messages requests.
 common:
+- type: AgenticAccess
+  url: agentic-access/martian-ai-agentic-access.yml
 - type: DomainSecurity
   url: security/martian-ai-domain-security.yml
 - type: Authentication
