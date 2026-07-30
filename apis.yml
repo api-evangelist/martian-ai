@@ -8,7 +8,20 @@ description: Martian operates an LLM model router and gateway that dynamically r
   OpenAI-compatible REST API (and an Anthropic Messages-compatible surface) so
   applications can route across a large catalog of models by changing only the
   base URL.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/martian-ai.png
 tags:
 - AI
 - LLM
@@ -19,67 +32,54 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: martian-ai:martian-chat-completions-api
+- aid: martian-ai:martian-ai-chat-completions-api
   name: Martian Chat Completions API
-  tags:
-  - Chat
-  - Completions
-  - Routing
-  - LLM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: The Chat Completions API from Martian — 1 operation(s) for chat completions.
   humanURL: https://docs.withmartian.com/api-reference/endpoints
   baseURL: https://api.withmartian.com/v1
+  tags:
+  - Chat Completions
   properties:
-  - url: https://docs.withmartian.com/quickstart
-    type: Documentation
-  - url: https://docs.withmartian.com/api-reference/endpoints
-    type: APIReference
-  - url: openapi/martian-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/martian-ai.postman_collection.json
-    type: Postman
-  description: OpenAI-compatible chat completions routed dynamically across a large
-    catalog of provider models. Models are addressed with a provider/model-name
-    string, with optional routing controls (e.g. willingness-to-pay) to trade
-    quality against cost, plus automatic cross-provider failover and streaming.
-- aid: martian-ai:martian-messages-api
+  - type: OpenAPI
+    url: openapi/martian-ai-chat-completions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.withmartian.com/quickstart
+  - type: APIReference
+    url: https://docs.withmartian.com/api-reference/endpoints
+  - type: Postman
+    url: collections/martian-ai.postman_collection.json
+- aid: martian-ai:martian-ai-messages-api
   name: Martian Messages API
+  description: The Messages API from Martian — 1 operation(s) for messages.
+  humanURL: https://docs.withmartian.com/api-reference/endpoints
+  baseURL: https://api.withmartian.com/v1
   tags:
   - Messages
-  - Anthropic Compatible
-  - Routing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/martian-ai-messages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.withmartian.com/quickstart
+  - type: APIReference
+    url: https://docs.withmartian.com/api-reference/endpoints
+  - type: Postman
+    url: collections/martian-ai.postman_collection.json
+- aid: martian-ai:martian-ai-models-api
+  name: Martian Models API
+  description: The Models API from Martian — 1 operation(s) for models.
   humanURL: https://docs.withmartian.com/api-reference/endpoints
   baseURL: https://api.withmartian.com/v1
-  properties:
-  - url: https://docs.withmartian.com/api-reference/endpoints
-    type: APIReference
-  - url: openapi/martian-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/martian-ai.postman_collection.json
-    type: Postman
-  description: Anthropic Messages-compatible endpoint that accepts the Anthropic
-    Messages request shape and routes it through the Martian Gateway, enabling
-    Anthropic SDKs and frameworks to use Martian routing without code changes.
-- aid: martian-ai:martian-models-api
-  name: Martian Models API
   tags:
   - Models
-  - Catalog
-  - Routing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.withmartian.com/api-reference/endpoints
-  baseURL: https://api.withmartian.com/v1
   properties:
-  - url: https://docs.withmartian.com/api-reference/endpoints
-    type: APIReference
-  - url: openapi/martian-ai-openapi.yml
-    type: OpenAPI
-  - url: collections/martian-ai.postman_collection.json
-    type: Postman
-  description: Lists every model currently supported by the Martian Gateway,
-    returning the provider/model-name identifiers usable as routing targets in
-    chat completions and messages requests.
+  - type: OpenAPI
+    url: openapi/martian-ai-models-api-openapi.yml
+  - type: Documentation
+    url: https://docs.withmartian.com/quickstart
+  - type: APIReference
+    url: https://docs.withmartian.com/api-reference/endpoints
+  - type: Postman
+    url: collections/martian-ai.postman_collection.json
 common:
 - type: AgenticAccess
   url: agentic-access/martian-ai-agentic-access.yml
