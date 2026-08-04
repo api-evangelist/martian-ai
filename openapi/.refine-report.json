@@ -1,0 +1,18 @@
+{
+  "provider": "martian-ai",
+  "sources": [
+    "martian-ai-chat-completions-api-openapi.yml",
+    "martian-ai-messages-api-openapi.yml",
+    "martian-ai-models-api-openapi.yml"
+  ],
+  "outputs": [
+    "martian-ai-chat-completions-api-openapi.yml",
+    "martian-ai-messages-api-openapi.yml",
+    "martian-ai-models-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
