@@ -1,0 +1,65 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.withmartian.com/api-reference/errors
+format: openai-compatible
+envelope:
+  openai: '{ "error": { "message": string, "type": string, "param": string|null, "code": string } }'
+  anthropic: '{ "type": "error", "error": { "type": string, "message": string } }'
+http_status_codes:
+- status: 200
+  name: OK
+  meaning: The request was successful; the response body contains the requested data.
+- status: 400
+  name: Bad Request
+  meaning: The request was malformed or contains invalid parameters. Check the request body and parameters.
+- status: 401
+  name: Unauthorized
+  meaning: Authentication failed. The API key is missing, invalid, or revoked.
+- status: 403
+  name: Forbidden
+  meaning: No permission to access the resource. Check account status and credits.
+- status: 404
+  name: Not Found
+  meaning: The requested resource, endpoint, or model does not exist. Check the URL and model name.
+- status: 422
+  name: Unprocessable Entity
+  meaning: The request was well-formed but has semantic errors (e.g. unsupported model parameters).
+- status: 429
+  name: Too Many Requests
+  meaning: Rate limit hit. Implement backoff and retry logic.
+- status: 500
+  name: Internal Server Error
+  meaning: An unexpected server error occurred. Retry or contact support if it persists.
+- status: 503
+  name: Service Unavailable
+  meaning: Service temporarily unavailable; the upstream provider may be down. Retry later.
+error_codes:
+- code: invalid_api_key
+  type: invalid_request_error
+  status: 401
+  meaning: API key missing, malformed, revoked, or expired.
+  remediation: Verify the key in the Martian Dashboard and use the Authorization Bearer header.
+- code: insufficient_credits
+  type: insufficient_quota
+  status: 403
+  meaning: Account has insufficient credits.
+  remediation: Add credits to the account in the Martian Dashboard.
+- code: model_not_found
+  type: invalid_request_error
+  status: 404
+  meaning: The named model does not exist or is missing the provider prefix.
+  remediation: Use a provider/model-name from the Available Models page.
+- code: invalid_parameter
+  type: invalid_request_error
+  status: 400
+  meaning: A parameter is missing, wrong type, or out of range.
+  remediation: Review the API Endpoints docs and correct the parameter.
+- code: rate_limit_exceeded
+  type: rate_limit_error
+  status: 429
+  meaning: Too many requests in a window.
+  remediation: Back off and retry after the advised interval.
+notes: >-
+  Errors are OpenAI-compatible by default; requests to /v1/messages return the
+  Anthropic-compatible error envelope. This is an API-level error registry, not
+  an RFC 9457 problem-details catalog and not payment decline codes.

@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: https://docs.withmartian.com/api-reference/endpoints
+server:
+  name: martian-gateway
+  transport: http
+  url: null
+  note: >-
+    No official hosted/remote MCP server was found for Martian (searched docs,
+    the withmartian GitHub org, and MCP registries). Tools below are a CANDIDATE
+    surface derived from the documented Gateway endpoints, not a published server.
+tools:
+- name: chat_completions
+  description: Create a chat completion (OpenAI-compatible) for a provider/model-name.
+  source_operation: POST https://api.withmartian.com/v1/chat/completions
+- name: messages
+  description: Create a message completion (Anthropic-compatible).
+  source_operation: POST https://api.withmartian.com/v1/messages
+- name: list_models
+  description: List the 200+ available provider/model-name identifiers.
+  source_operation: GET https://api.withmartian.com/v1/models

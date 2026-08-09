@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.withmartian.com/api-reference
+standards:
+- id: openai-chat-completions
+  conforms: true
+  evidence: >-
+    /v1/chat/completions supports most parameters of the OpenAI Chat Completions
+    API; the OpenAI SDK works against base_url https://api.withmartian.com/v1.
+- id: anthropic-messages
+  conforms: true
+  evidence: >-
+    /v1/messages is Anthropic Messages API compatible; the Anthropic SDK works
+    against the same base URL.
+- id: oauth2
+  conforms: false
+  evidence: Authentication is API-key (bearer) only; no OAuth2 surface documented.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use the OpenAI/Anthropic error envelope, not application/problem+json.
+- id: sse-streaming
+  conforms: true
+  evidence: >-
+    OpenAI-compatible chat completions support token streaming per the OpenAI
+    streaming contract.
+notes: >-
+  These are cross-cutting interoperability claims derived from the documented
+  API. No published third-party compliance certifications (SOC 2, ISO 27001,
+  etc.) were found, so no Compliance pointer is emitted.

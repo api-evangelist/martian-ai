@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/withmartian
+packages:
+- language: python
+  registry: pypi
+  name: martian-python
+  url: https://pypi.org/project/martian-python/
+  install: pip install martian-python
+  summary: Python client library for the Martian API
+  repository: https://github.com/withmartian/martian-python-v1
+  official: true
+- language: javascript
+  registry: npm
+  name: martian-node
+  url: https://www.npmjs.com/package/martian-node
+  install: npm install martian-node
+  summary: Node.js library for the Martian API
+  repository: https://github.com/withmartian/martian-node-v1
+  official: true
+- language: python
+  registry: pypi
+  name: martian_apart_hack_sdk
+  url: https://github.com/withmartian/martian-sdk-python
+  install: pip install martian-apart-hack-sdk
+  summary: Martian Python SDK to manage judges and routers
+  repository: https://github.com/withmartian/martian-sdk-python
+  official: true
+- language: javascript
+  registry: npm
+  name: martian-ai-sdk-provider
+  url: https://github.com/withmartian/martian-ai-sdk-provider
+  install: null
+  summary: Vercel AI SDK provider for the Martian Gateway
+  repository: https://github.com/withmartian/martian-ai-sdk-provider
+  official: true
+notes: >-
+  Because the Martian Gateway is OpenAI- and Anthropic-compatible, the official
+  OpenAI and Anthropic SDKs also work directly against
+  https://api.withmartian.com/v1 (see docs.withmartian.com/integrations). The
+  pypi package "martian" is an unrelated Zope project and is NOT first-party.

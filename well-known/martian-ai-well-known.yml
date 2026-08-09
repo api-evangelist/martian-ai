@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+hosts:
+- host: https://withmartian.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://docs.withmartian.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /openapi.yaml
+    status: 404
+notes: >-
+  No /.well-known/ discovery documents, llms.txt, or published OpenAPI/Swagger
+  spec were found on the website, docs, or API hosts as of 2026-07-20. Empty is
+  a valid, recorded result.

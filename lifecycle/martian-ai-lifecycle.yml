@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.withmartian.com
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.withmartian.com/v1
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: No formal deprecation / Sunset-header policy is published.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.withmartian.com
+deprecated_operations: []
+notes: >-
+  A public status page is live at status.withmartian.com. No published SLA,
+  versioning policy document, or deprecation policy was found at the time of
+  enrichment.

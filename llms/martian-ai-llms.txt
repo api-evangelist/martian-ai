@@ -1,0 +1,41 @@
+# Martian
+
+> Martian operates the Martian Gateway, a unified LLM API providing access to 200+ AI models from leading providers (OpenAI, Anthropic, and others) through a single OpenAI- and Anthropic-compatible endpoint. Point the standard OpenAI or Anthropic SDK at https://api.withmartian.com/v1, authenticate with a bearer API key, and address models as provider/model-name. Martian is also an AI interpretability research lab publishing open-source frameworks (ARES, K-Steering, RouterBench) and a model-router / judges SDK.
+
+## APIs
+
+- [Martian Gateway API](https://docs.withmartian.com/gateway): base URL https://api.withmartian.com/v1. Operations: POST /v1/chat/completions (OpenAI-compatible), POST /v1/messages (Anthropic-compatible), GET /v1/models (List Models).
+
+## Docs
+
+- [Documentation](https://docs.withmartian.com)
+- [Quickstart](https://docs.withmartian.com/quickstart)
+- [API Reference](https://docs.withmartian.com/api-reference)
+- [Authentication](https://docs.withmartian.com/api-reference/authentication)
+- [Endpoints](https://docs.withmartian.com/api-reference/endpoints)
+- [Available Models](https://docs.withmartian.com/api-reference/models)
+- [Errors](https://docs.withmartian.com/api-reference/errors)
+- [Integrations](https://docs.withmartian.com/integrations)
+
+## SDKs
+
+- [martian-python (PyPI)](https://pypi.org/project/martian-python/): Python client library for the Martian API.
+- [martian-node (npm)](https://www.npmjs.com/package/martian-node): Node.js library for the Martian API.
+- [martian-sdk-python (GitHub)](https://github.com/withmartian/martian-sdk-python): SDK to manage judges and routers.
+- OpenAI and Anthropic SDKs work directly against the Gateway base URL.
+
+## Resources
+
+- [Dashboard / Sign up](https://app.withmartian.com/)
+- [Status](https://status.withmartian.com)
+- [Blog](https://withmartian.com/blog)
+- [GitHub](https://github.com/withmartian)
+
+## Enrichment artifacts
+
+- [Packages](https://raw.githubusercontent.com/api-evangelist/martian/refs/heads/main/packages/martian-packages.yml)
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/martian/refs/heads/main/authentication/martian-authentication.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/martian/refs/heads/main/conventions/martian-conventions.yml)
+- [Error codes](https://raw.githubusercontent.com/api-evangelist/martian/refs/heads/main/errors/martian-error-codes.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/martian/refs/heads/main/lifecycle/martian-lifecycle.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/martian/refs/heads/main/conformance/martian-conformance.yml)

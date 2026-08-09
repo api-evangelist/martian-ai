@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.withmartian.com/api-reference
+docs: https://docs.withmartian.com/api-reference
+authentication:
+  style: bearer-api-key
+  header: 'Authorization: Bearer <API_KEY>'
+  ref: authentication/martian-authentication.yml
+compatibility:
+  openai: true
+  anthropic: true
+  note: >-
+    The Gateway mirrors the OpenAI Chat Completions API (/v1/chat/completions)
+    and the Anthropic Messages API (/v1/messages); existing OpenAI/Anthropic SDK
+    integrations work by changing only the base URL.
+model_addressing:
+  scheme: provider/model-name
+  required: true
+  examples: [openai/gpt-4.1-nano, anthropic/claude-sonnet-4-20250514]
+  note: The provider prefix is required; bare model names are rejected.
+metadata:
+  supported: true
+  field: metadata
+  description: >-
+    Optional object on chat/completions carrying additional information about
+    the request for logging, analytics, or monitoring purposes.
+idempotency:
+  supported: false
+  note: No idempotency-key mechanism is documented for the Gateway.
+pagination:
+  supported: false
+  note: No paginated collection endpoints documented; List Models returns a full list.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.withmartian.com/v1
+error_envelope:
+  openai_format: '{ "error": { "message", "type", "param", "code" } }'
+  anthropic_format: '{ "type": "error", "error": { "type", "message" } }'
+  ref: errors/martian-error-codes.yml
+rate_limit_signaling:
+  status: 429
+  behavior: >-
+    On 429 (rate_limit_exceeded) the error message advises implementing backoff
+    and retry (e.g. "Please retry after 60 seconds"). No published numeric quota
+    or documented rate-limit response headers.
+cross_links:
+  authentication: authentication/martian-authentication.yml
+  errors: errors/martian-error-codes.yml
+  lifecycle: lifecycle/martian-lifecycle.yml

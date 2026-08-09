@@ -2,12 +2,10 @@ aid: martian-ai
 url: https://raw.githubusercontent.com/api-evangelist/martian-ai/refs/heads/main/apis.yml
 name: Martian
 kind: company
-description: Martian operates an LLM model router and gateway that dynamically routes
-  each request to the best underlying model across providers for the optimal balance
-  of quality, latency, and cost. The Martian Gateway exposes a drop-in,
-  OpenAI-compatible REST API (and an Anthropic Messages-compatible surface) so
-  applications can route across a large catalog of models by changing only the
-  base URL.
+description: Martian operates an LLM model router and gateway that dynamically routes each request to
+  the best underlying model across providers for the optimal balance of quality, latency, and cost. The
+  Martian Gateway exposes a drop-in, OpenAI-compatible REST API (and an Anthropic Messages-compatible
+  surface) so applications can route across a large catalog of models by changing only the base URL.
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -29,7 +27,7 @@ tags:
 - Gateway
 - Cost Optimization
 created: '2026-06-20'
-modified: '2026-06-20'
+modified: '2026-08-08'
 specificationVersion: '0.19'
 apis:
 - aid: martian-ai:martian-ai-chat-completions-api
@@ -103,6 +101,40 @@ common:
   url: finops/martian-ai-finops.yml
 - type: Blog
   url: https://www.withmartian.com/blog
+- type: DeveloperPortal
+  url: https://docs.withmartian.com
+- type: APIReference
+  url: https://docs.withmartian.com/api-reference
+- type: GettingStarted
+  url: https://docs.withmartian.com/quickstart
+- type: Support
+  url: https://docs.withmartian.com/resources/support
+- type: SignUp
+  url: https://app.withmartian.com/
+- type: Login
+  url: https://app.withmartian.com/
+- type: StatusPage
+  url: https://status.withmartian.com
+- type: Packages
+  url: packages/martian-ai-packages.yml
+- type: SDKs
+  url: packages/martian-ai-packages.yml
+- type: Conventions
+  url: conventions/martian-ai-conventions.yml
+- type: ErrorCatalog
+  url: errors/martian-ai-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/martian-ai-lifecycle.yml
+- type: Conformance
+  url: conformance/martian-ai-conformance.yml
+- type: WellKnown
+  url: well-known/martian-ai-well-known.yml
+- type: MCPServer
+  url: mcp/martian-ai-mcp.yml
+- type: LLMsTxt
+  url: llms/martian-ai-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-merged-from:
+- martian
