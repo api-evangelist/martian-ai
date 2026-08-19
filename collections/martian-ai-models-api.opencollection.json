@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Martian Gateway Chat Completions Models API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.withmartian.com/v1/models",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a JSON object containing all models currently supported by the Martian Gateway. The returned identifiers are provider/model-name strings usable as routing targets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

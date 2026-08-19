@@ -1,0 +1,160 @@
+{
+  "item": [
+    {
+      "id": "45e4b19c-1ab2-4973-9fcc-658d51a7f80b",
+      "name": "Models",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b91278da-df33-401f-a2c6-15d39b42c1d8",
+          "name": "List supported models",
+          "request": {
+            "name": "List supported models",
+            "description": {
+              "content": "Returns a JSON object containing all models currently supported by the Martian Gateway. The returned identifiers are provider/model-name strings usable as routing targets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7675374c-3f5b-4500-beb3-6de5d0e166fb",
+              "name": "A list of models supported by the Gateway.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"openai/gpt-4.1-nano\",\n      \"object\": \"model\",\n      \"owned_by\": \"string\"\n    },\n    {\n      \"id\": \"openai/gpt-4.1-nano\",\n      \"object\": \"model\",\n      \"owned_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f44004e2-af9f-4022-bf11-aaf351ec6f12",
+              "name": "Authentication failed (missing or invalid API key).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.withmartian.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8c772581-cddd-4cee-947b-08467716c4f2",
+    "name": "Martian Gateway Chat Completions Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI specification for the Martian Gateway, an LLM model router. The Gateway exposes an OpenAI-compatible chat completions endpoint, an Anthropic Messages-compatible endpoint, and a models listing endpoint. Requests are routed dynamically across a catalog of provider models. Models are addressed with a provider/model-name string (for example, openai/gpt-4.1-nano).\n\nContact Support:\n Name: Martian",
+      "type": "text/plain"
+    }
+  }
+}
