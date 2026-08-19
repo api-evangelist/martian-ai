@@ -28,7 +28,7 @@ tags:
 - Cost Optimization
 created: '2026-06-20'
 modified: '2026-08-08'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: martian-ai:martian-ai-chat-completions-api
   name: Martian Chat Completions API
