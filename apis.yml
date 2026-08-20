@@ -21,6 +21,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/martian-ai.png
 tags:
+- Artificial Intelligence
+- LLM
+- Model Router
+- Gateway
+- Cost Optimization
+tags_raw:
 - AI
 - LLM
 - Model Router
@@ -52,6 +58,8 @@ apis:
   humanURL: https://docs.withmartian.com/api-reference/endpoints
   baseURL: https://api.withmartian.com/v1
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
