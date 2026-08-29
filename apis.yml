@@ -6,6 +6,18 @@ description: Martian operates an LLM model router and gateway that dynamically r
   the best underlying model across providers for the optimal balance of quality, latency, and cost. The
   Martian Gateway exposes a drop-in, OpenAI-compatible REST API (and an Anthropic Messages-compatible
   surface) so applications can route across a large catalog of models by changing only the base URL.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
