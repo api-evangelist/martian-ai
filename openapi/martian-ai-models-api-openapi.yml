@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Martian Gateway Chat Completions Models API
+  title: Martian Gateway Models API
   description: OpenAPI specification for the Martian Gateway, an LLM model router. The Gateway exposes an OpenAI-compatible chat completions endpoint, an Anthropic Messages-compatible endpoint, and a models listing endpoint. Requests are routed dynamically across a catalog of provider models. Models are addressed with a provider/model-name string (for example, openai/gpt-4.1-nano).
   termsOfService: https://www.withmartian.com
   contact:

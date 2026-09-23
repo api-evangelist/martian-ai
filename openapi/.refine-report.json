@@ -1,9 +1,7 @@
 {
   "provider": "martian-ai",
   "sources": [
-    "martian-ai-chat-completions-api-openapi.yml",
-    "martian-ai-messages-api-openapi.yml",
-    "martian-ai-models-api-openapi.yml"
+    "_original/martian-ai-openapi.yml"
   ],
   "outputs": [
     "martian-ai-chat-completions-api-openapi.yml",
@@ -13,6 +11,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "martian-ai-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "martian-ai-openapi.yml: declared missing tag: Chat Completions",
+    "martian-ai-openapi.yml: declared missing tag: Messages",
+    "martian-ai-openapi.yml: declared missing tag: Models",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "martian-ai-chat-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "martian-ai-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "martian-ai-models-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
