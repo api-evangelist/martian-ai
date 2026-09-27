@@ -41,6 +41,40 @@ paths:
           description: Rate limit or quota exceeded.
 components:
   schemas:
+    MessagesResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: message
+        role:
+          type: string
+          example: assistant
+        model:
+          type: string
+          description: The provider/model-name that the router selected.
+        content:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              text:
+                type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
     MessagesRequest:
       type: object
       required:
@@ -69,31 +103,6 @@ components:
         stream:
           type: boolean
           default: false
-    MessagesResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          example: message
-        role:
-          type: string
-          example: assistant
-        model:
-          type: string
-          description: The provider/model-name that the router selected.
-        content:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-              text:
-                type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
     ChatMessage:
       type: object
       required:
@@ -114,15 +123,6 @@ components:
         name:
           type: string
           description: An optional name for the participant.
-    Usage:
-      type: object
-      properties:
-        prompt_tokens:
-          type: integer
-        completion_tokens:
-          type: integer
-        total_tokens:
-          type: integer
   securitySchemes:
     bearerAuth:
       type: http
