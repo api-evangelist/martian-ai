@@ -1,22 +1,20 @@
-# Kin Score artifact — martian-ai — 2026-09-02T224043
+# Kin Score artifact — martian-ai — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: martian-ai
-  schema_version: 0.18.0
-  scored_at: '2026-09-02'
-  run_ts: 2026-09-02T224043
-  composite: 55.7
-  band: strong
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 52.6
+  band: developing
   facets:
-    discoverability: 75.9
-    contract_quality: 63.1
-    governance: 29.5
-    operational_transparency: 34.2
-    developer_ergonomics: 69.0
-    commercial_clarity: 52.6
+    discoverability: 73.2
+    contract_quality: 57.6
     contract_governance: 29.5
-    access_clarity: 52.6
+    operational_transparency: 38.9
+    developer_ergonomics: 65.5
+    access_clarity: 49.5
   agent_readiness:
     score: 23.7
     band: agent-aware
@@ -40,6 +38,12 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 15.5
+    matched_via: fallback
   provenance:
     mcp: derived
     agentic_access: derived
