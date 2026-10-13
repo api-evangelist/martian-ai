@@ -1,0 +1,23 @@
+edges:
+- partner_name: OpenAI
+  partner: openai
+  partner_match: domain
+  type: contract
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  evidence: https://github.com/api-evangelist/martian-ai/blob/main/openapi/martian-ai-chat-completions-api-openapi.yml#L4
+  contract_reference:
+    repo: martian-ai
+    spec_file: martian-ai-chat-completions-api-openapi.yml
+    property: description
+    value: OpenAI-compatible
+    note: 'martian-ai declares OpenAI compatibility: ''description: OpenAPI specification for the Martian Gateway,
+      an LLM model router. The Gateway exposes an OpenAI-compatible chat completions endpoint, an Anthropi'''
+    detected_by: sweep-model-routing.py
+    detected: '2026-10-13'
+  detected_by: sweep-model-routing.py
+  first_seen: '2026-10-13'
+generated: '2026-10-13'
+method: searched
+checked: []
