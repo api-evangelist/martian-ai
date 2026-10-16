@@ -15,7 +15,7 @@ edges:
     note: 'martian-ai declares OpenAI compatibility: ''description: OpenAPI specification for the Martian Gateway,
       an LLM model router. The Gateway exposes an OpenAI-compatible chat completions endpoint, an Anthropi'''
     detected_by: sweep-model-routing.py
-    detected: '2026-10-13'
+    detected: '2026-10-15'
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
 generated: '2026-10-13'
