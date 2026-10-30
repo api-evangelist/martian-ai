@@ -1,4 +1,4 @@
-# Martian (martian-ai)
+# Martian
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,96 +66,151 @@
 
 Martian operates an LLM model router and gateway that dynamically routes each request to the best underlying model across providers for the optimal balance of quality, latency, and cost. The Martian Gateway exposes a drop-in, OpenAI-compatible REST API (and an Anthropic Messages-compatible surface) so applications can route across a large catalog of models by changing only the base URL.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/martian-ai/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/martian-ai/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · LLM · Model Router · Gateways · Cost Optimization
 
-## Tags
+## Martian on APIs.io
 
-- AI
-- LLM
-- Model Router
-- Gateway
-- Cost Optimization
+Everything profiled for Martian is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/martian-ai/](https://apis.io/providers/martian-ai/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Martian Chat Completions API](https://apis.io/apis/martian-ai/martian-ai-chat-completions-api/) — The Chat Completions API from Martian — 1 operation(s) for chat completions.
+- [Martian Messages API](https://apis.io/apis/martian-ai/martian-ai-messages-api/) — The Messages API from Martian — 1 operation(s) for messages.
+- [Martian Models API](https://apis.io/apis/martian-ai/martian-ai-models-api/) — The Models API from Martian — 1 operation(s) for models.
 
-## APIs
+### Published properties
 
-### Martian Chat Completions API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-OpenAI-compatible chat completions routed dynamically across a large catalog of provider models. Models are addressed with a provider/model-name string, with optional routing controls (e.g. willingness-to-pay) to trade quality against cost, plus automatic cross-provider failover and streaming.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://docs.withmartian.com/api-reference/endpoints](https://docs.withmartian.com/api-reference/endpoints)
-- **Base URL:** `https://api.withmartian.com/v1`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Martian Gateway Chat Completions Streaming (HTTP + SSE)](https://apis.io/asyncapis/martian-ai/martian-ai-asyncapi/)
 
-- Chat
-- Completions
-- Routing
-- LLM
+#### Event channels (1)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://docs.withmartian.com/quickstart)
-- [API Reference](https://docs.withmartian.com/api-reference/endpoints)
-- [OpenAPI](openapi/martian-ai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/martian-ai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/martian-ai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [/v1/chat/completions](https://apis.io/channels/martian-ai/v1-chat-completions/)
 
-### Martian Messages API
+#### MCP servers (1)
 
-Anthropic Messages-compatible endpoint that accepts the Anthropic Messages request shape and routes it through the Martian Gateway, enabling Anthropic SDKs and frameworks to use Martian routing without code changes.
+Model Context Protocol servers that expose the API to agents.
 
-- **Human URL:** [https://docs.withmartian.com/api-reference/endpoints](https://docs.withmartian.com/api-reference/endpoints)
-- **Base URL:** `https://api.withmartian.com/v1`
+- [martian-gateway](https://apis.io/servers/martian-ai/martian-gateway/)
 
-#### Tags
+#### Agentic access (1)
 
-- Messages
-- Anthropic Compatible
-- Routing
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Properties
+- [Martian Ai Agentic Access](https://apis.io/agentic-access/martian-ai/martian-ai-agentic-access/)
 
-- [API Reference](https://docs.withmartian.com/api-reference/endpoints)
-- [OpenAPI](openapi/martian-ai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/martian-ai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/martian-ai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Collections (4)
 
-### Martian Models API
+Postman and Open Collection request collections.
 
-Lists every model currently supported by the Martian Gateway, returning the provider/model-name identifiers usable as routing targets in chat completions and messages requests.
+- [Martian Gateway API](https://apis.io/collections/martian-ai/open-martian-ai/)
+- [Martian Gateway Chat Completions API](https://apis.io/collections/martian-ai/open-martian-ai-chat-completions-api/)
+- [Martian Gateway Chat Completions Messages API](https://apis.io/collections/martian-ai/open-martian-ai-messages-api/)
+- [Martian Gateway Chat Completions Models API](https://apis.io/collections/martian-ai/open-martian-ai-models-api/)
 
-- **Human URL:** [https://docs.withmartian.com/api-reference/endpoints](https://docs.withmartian.com/api-reference/endpoints)
-- **Base URL:** `https://api.withmartian.com/v1`
+#### Governance rules (1)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Models
-- Catalog
-- Routing
+- [Martian — asyncapi rules](https://apis.io/rules/martian-ai/martian-ai-asyncapi-spectral-rules/)
 
-#### Properties
+#### Security (2)
 
-- [API Reference](https://docs.withmartian.com/api-reference/endpoints)
-- [OpenAPI](openapi/martian-ai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/martian-ai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/martian-ai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Martian Ai Authentication](https://apis.io/security/martian-ai/martian-ai-authentication/)
+- [Martian Ai Domain Security](https://apis.io/security/martian-ai/martian-ai-domain-security/)
 
-- [GitHub Organization](https://github.com/withmartian)
-- [LinkedIn](https://www.linkedin.com/company/withmartian)
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Martian Ai Plans Pricing](https://apis.io/plans/martian-ai/martian-ai-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Martian Ai Rate Limits](https://apis.io/rate-limits/martian-ai/martian-ai-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Martian Ai Finops](https://apis.io/finops/martian-ai/martian-ai-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.withmartian.com)
 - [Documentation](https://docs.withmartian.com)
-- [Plans](plans/martian-ai-plans-pricing.yml)
-- [Rate Limits](rate-limits/martian-ai-rate-limits.yml)
-- [Fin Ops](finops/martian-ai-finops.yml)
+- [Getting started](https://docs.withmartian.com/quickstart)
+- [API reference](https://docs.withmartian.com/api-reference)
+- [Sign up](https://app.withmartian.com/)
+- [Support](https://docs.withmartian.com/resources/support)
+- [Blog](https://www.withmartian.com/blog)
+- [GitHub](https://github.com/withmartian)
+- [Status](https://status.withmartian.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 44.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 57.6 |
+| Contract governance | 29.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 65.5 |
+| Access clarity | 21.1 |
+
+**Agent readiness 21.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 15.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/martian-ai/](https://apis.io/providers/martian-ai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Martian: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/martian-ai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
